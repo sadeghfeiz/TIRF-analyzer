@@ -1,0 +1,3 @@
+Open the command in the folder containing the files, then: (the version might be different, here is 5)
+
+pyuic5 -o GUIdesign.py -x GUIdesign.ui

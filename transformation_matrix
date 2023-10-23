@@ -1,0 +1,30 @@
+import numpy as np
+# input data
+ins = [[1013, 1022], [1350, 1680], [48, 1584]]  # <- points on TIRF camera [x,y]
+out = [[1939, 993], [2256, 334], [958, 466]] # <- points on MT camera
+# calculations
+l = len(ins)
+B = np.vstack([np.transpose(ins), np.ones(l)])
+D = 1.0 / np.linalg.det(B)
+entry = lambda r,d: np.linalg.det(np.delete(np.vstack([r, B]), (d+1), axis=0))
+M = [[(-1)**i * D * entry(R, i) for i in range(l)] for R in np.transpose(out)]
+A, t = np.hsplit(np.array(M), [l-1])
+t = np.transpose(t)[0]
+# output
+# print("Affine transformation matrix:\n", A)
+# print("Affine transformation translation vector:\n", t)
+# unittests
+# print("TESTING:")
+for p, P in zip(np.array(ins), np.array(out)):
+  image_p = np.dot(A, p) + t
+  result = "[OK]" if np.allclose(image_p, P) else "[ERROR]"
+  # print(p, " mapped to: ", image_p, " ; expected: ", P, result)
+
+corners = [[0, 0], [2048, 0], [2048, 2048], [0, 2048], [0, 0]] 
+for p in np.array(corners):
+  tr_corner = np.round(np.dot(A, p) + t)
+  # print(tr_corner)
+  
+Point_to_transform = [1398,	825] #coordinate on TIRF camera
+transformet_point = np.dot(A,Point_to_transform) + t #coordinate on MT camera
+print(np.round(transformet_point))
