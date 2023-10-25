@@ -412,6 +412,8 @@ def plot7(d):
     return(d)
 
 def plot7FRET(d):
+    d['ERange'] = [-0.25, 1.25]# acceptance range for plotting
+    d['SRange'] = [-0.25, 1.25]
     from imgProc import moving_average
     from pathlib import Path
     ### FRET track one by one

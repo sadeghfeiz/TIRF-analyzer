@@ -387,10 +387,10 @@ def rePlotClicked():
             plot5(dl)
         if ui.plotIntTraces.isChecked():
             plot7(dl)
-        if ui.plotFRETtraces.isChecked():
-            plot7FRET(dl)
         if ui.plotSE.isChecked():
             FRETcalc(dl)
+        if ui.plotFRETtraces.isChecked():
+            plot7FRET(dl)
         print('done!')
     except: traceback.print_exc()
 
