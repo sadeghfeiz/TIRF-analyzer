@@ -24,3 +24,4 @@ clicked_points = plot_and_get_click()
 time.sleep(10)
 # print the clicked point positions
 print("Clicked point positions:", clicked_points)
+last check
