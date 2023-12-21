@@ -32,12 +32,15 @@ def status(text):
     status_bar = MainWindow.statusBar()
     status_bar.showMessage(text)
 
-
 def actionSave_parametersClicked():
     print(d)
     d2={}
     getSettings(ui, d2)
     print(d2)
+
+def actionImage_simulatorClicked():
+    import imageSimulator
+    # ALEX_FRET_Simulator()
 
 def actionAboutClicked():
     about = QMessageBox()
@@ -470,6 +473,7 @@ def runGUI():
     ### interactivity:
     ### Menu
     ui.actionSave_parameters.triggered.connect(actionSave_parametersClicked)
+    ui.actionImage_simulator.triggered.connect(actionImage_simulatorClicked)
     ui.actionAbout.triggered.connect(actionAboutClicked)
     ### first column
     ui.sourceFolderBrowse.clicked.connect(sourceFolderBrowseClicked)
